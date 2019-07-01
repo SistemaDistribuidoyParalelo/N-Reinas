@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by mazuki (darksiderg)--><schema targetNamespace="http://ws.bancogalicia.com.ar/webservices/consultaevaluacionindividuosoferta/obtenerevaluacionindividuosofertaresponse/4_0_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:h="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" xmlns:b="http://ws.bancogalicia.com.ar/webservices/globales/bgbatiposbase/3_0_0" xmlns:s="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" xmlns:tns="http://ws.bancogalicia.com.ar/webservices/consultaevaluacionindividuosoferta/obtenerevaluacionindividuosofertaresponse/4_0_0">
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbaresultadooperacion/2_0_0" schemaLocation="anonimo.xsd"/>
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatipossoporte/3_0_0" schemaLocation="anonimo_1_2_3.xsd"/>
+  <import namespace="http://ws.bancogalicia.com.ar/webservices/globales/bgbatiposbase/3_0_0" schemaLocation="anonimo_1_2_3_4.xsd"/>
+  <element name="ObtenerEvaluacionIndividuosOfertaResponse">
+    <complexType>
+      <sequence>
+        <element ref="h:BGBAResultadoOperacion"/>
+        <element name="Datos" minOccurs="0">
+          <complexType>
+            <sequence>
+              <element name="Evaluacion">
+                <complexType>
+                  <sequence>
+                    <element name="CodigoCanal" type="b:codigov2"/>
+                    <element name="Documento" type="b:documento"/>
+                    <element name="FechaHoraInicio" type="string"/>
+                  </sequence>
+                </complexType>
+              </element>
+              <element name="PedidosBureau" minOccurs="0">
+                <complexType>
+                  <sequence>
+                    <element name="PedidoBureau" maxOccurs="unbounded">
+                      <complexType>
+                        <sequence>
+                          <element name="CodigoBureau" type="b:codigov2"/>
+                          <element name="IdRequerimiento" type="b:id" minOccurs="0"/>
+                          <element name="FechaHoraPedido" type="string"/>
+                          <element name="TiempoMaximo" type="int"/>
+                          <element name="SolicitudExitosa" type="b:indicador"/>
+                        </sequence>
+                      </complexType>
+                    </element>
+                  </sequence>
+                </complexType>
+              </element>
+              <element name="ResultadoEvaluacion" minOccurs="0">
+                <complexType>
+                  <sequence>
+                    <element name="Politicas">
+                      <complexType>
+                        <sequence>
+                          <element name="CategoriaDecision">
+                            <complexType>
+                              <sequence>
+                                <element name="Codigo" type="b:codigov2"/>
+                                <element name="Descripcion" type="string"/>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="CodigosRazon" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="CodigoRazon" maxOccurs="20">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="Codigo" type="b:codigov2"/>
+                                      <element name="Descripcion" type="string"/>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                        </sequence>
+                      </complexType>
+                    </element>
+                    <element name="Calificaciones" minOccurs="0">
+                      <complexType>
+                        <sequence>
+                          <element name="Calificacion">
+                            <complexType>
+                              <sequence>
+                                <element name="FechaVencimiento" type="date"/>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="ConceptosComerciales" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="ConceptoComercial" maxOccurs="unbounded">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="Codigo" type="b:codigov2"/>
+                                      <element name="Descripcion" type="string"/>
+                                      <element name="CodigoEstado" type="b:codigov2"/>
+                                      <element name="Monto" type="b:montov2"/>
+                                      <element name="FechaVencimiento" type="date"/>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                        </sequence>
+                      </complexType>
+                    </element>
+                    <element name="VerificacionesAdicionales" minOccurs="0">
+                      <complexType>
+                        <sequence>
+                          <element name="VerificacionAdicional" maxOccurs="unbounded">
+                            <complexType>
+                              <sequence>
+                                <element name="Codigo" type="b:codigov2"/>
+                                <element name="DescripcionInformacion" type="string"/>
+                                <element name="DescripcionVerificacion" type="string"/>
+                              </sequence>
+                            </complexType>
+                          </element>
+                        </sequence>
+                      </complexType>
+                    </element>
+                    <element name="DocumentosRequeridos" minOccurs="0">
+                      <complexType>
+                        <sequence>
+                          <element name="DocumentoRequerido" maxOccurs="unbounded">
+                            <complexType>
+                              <sequence>
+                                <element name="Descripcion" type="string"/>
+                                <element name="Vigencia" type="int"/>
+                              </sequence>
+                            </complexType>
+                          </element>
+                        </sequence>
+                      </complexType>
+                    </element>
+                    <element name="IngresosInferidos" type="b:montov2" minOccurs="0"/>
+                    <element name="CuotaComprometida" type="b:montov2" minOccurs="0"/>
+                    <element name="CuotaMaxima" type="b:montov2" minOccurs="0"/>
+                    <element name="NivelesDeFirma" minOccurs="0">
+                      <complexType>
+                        <sequence>
+                          <element name="NivelDeFirma" maxOccurs="unbounded">
+                            <complexType>
+                              <sequence>
+                                <element name="Codigo" type="b:codigov2"/>
+                                <element name="Descripcion" type="string"/>
+                              </sequence>
+                            </complexType>
+                          </element>
+                        </sequence>
+                      </complexType>
+                    </element>
+                    <element name="OfertaVendible">
+                      <complexType>
+                        <sequence>
+                          <element name="TarjSueltas" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="CantidadTarjSueltasAOfrecer" type="int"/>
+                                <element name="TarjSuelta" maxOccurs="unbounded">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="TarjetaObligatoria" type="b:indicador"/>
+                                      <element name="ClaseProductoNV">
+                                        <complexType>
+                                          <sequence>
+                                            <element name="CodigoSubsistema" type="unsignedLong"/>
+                                            <element name="CodigoProducto" type="string"/>
+                                            <element name="CodigoSubProducto" type="string"/>
+                                          </sequence>
+                                        </complexType>
+                                      </element>
+                                      <element name="OfertasTarjSueltas">
+                                        <complexType>
+                                          <sequence>
+                                            <element name="CantidadAOfrecer" type="int"/>
+                                            <element name="OfertaTarjSuelta" maxOccurs="unbounded">
+                                              <complexType>
+                                                <sequence>
+                                                  <element name="Orden" type="int"/>
+                                                  <element name="TieneCosto" type="b:indicador"/>
+                                                  <element name="CodigoModificador" type="b:codigov2"/>
+                                                  <element ref="b:ClaseProductoCatalogo"/>
+                                                  <element name="AccionProductoCatalogo">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="CodigoAccionProducto" type="b:codigov2"/>
+                                                        <element name="ProductosTenencia" minOccurs="0" maxOccurs="unbounded">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="NumeroProductoTenencia" type="string"/>
+                                                              <element name="Obligatoriedad" type="b:indicador"/>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                  <element name="MontosLimite">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="Definitivo" type="b:montov2"/>
+                                                        <element name="PrimeraCompra" type="b:montov2" minOccurs="0"/>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                  <element name="CodigoAccionMonto" type="b:codigov2"/>
+                                                </sequence>
+                                              </complexType>
+                                            </element>
+                                          </sequence>
+                                        </complexType>
+                                      </element>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="TarjPaquetizadas" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="PaqueteExistente" type="b:indicador"/>
+                                <element name="Paquetes">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="Paquete" maxOccurs="unbounded">
+                                        <complexType>
+                                          <sequence>
+                                            <element name="OrdenPaquete" type="int"/>
+                                            <element ref="b:ClaseProductoNV"/>
+                                            <element ref="b:ClaseProductoCatalogo"/>
+                                            <element name="AccionProductoCatalogo">
+                                              <complexType>
+                                                <sequence>
+                                                  <element name="CodigoAccionProducto" type="b:codigov2"/>
+                                                  <element name="ProductosTenencia" minOccurs="0" maxOccurs="unbounded">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="NumeroProductoTenencia" type="string"/>
+                                                        <element name="Obligatoriedad" type="b:indicador"/>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                </sequence>
+                                              </complexType>
+                                            </element>
+                                            <element name="TarjPaquetizadasAOfrecer">
+                                              <complexType>
+                                                <sequence>
+                                                  <element name="Cantidad" type="int"/>
+                                                  <element name="TarjetaPaquetizada" maxOccurs="unbounded">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="TarjetaObligatoria" type="b:indicador"/>
+                                                        <element name="ClaseProductoNV">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="CodigoSubsistema" type="unsignedLong"/>
+                                                              <element name="CodigoProducto" type="string"/>
+                                                              <element name="CodigoSubProducto" type="string"/>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                        <element name="OfertasTarjPaquetizadas">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="CantidadAOfrecer" type="int"/>
+                                                              <element name="OfertaTarjetaPaquetizada" maxOccurs="unbounded">
+                                                                <complexType>
+                                                                  <sequence>
+                                                                    <element name="OrdenTarjeta" type="int"/>
+                                                                    <element name="CodigoModificador" type="b:codigov2"/>
+                                                                    <element ref="b:ClaseProductoCatalogo"/>
+                                                                    <element name="AccionComponenteCatalogo">
+                                                                      <complexType>
+                                                                        <sequence>
+                                                                          <element name="CodigoAccionComponente" type="b:codigov2"/>
+                                                                          <element name="ProductosTenencia" minOccurs="0" maxOccurs="unbounded">
+                                                                            <complexType>
+                                                                              <sequence>
+                                                                                <element name="NumeroProductoTenencia" type="string"/>
+                                                                                <element name="Obligatoriedad" type="b:indicador"/>
+                                                                              </sequence>
+                                                                            </complexType>
+                                                                          </element>
+                                                                        </sequence>
+                                                                      </complexType>
+                                                                    </element>
+                                                                    <element name="MontosLimite">
+                                                                      <complexType>
+                                                                        <sequence>
+                                                                          <element name="Definitivo" type="b:montov2"/>
+                                                                          <element name="PrimeraCompra" type="b:montov2" minOccurs="0"/>
+                                                                        </sequence>
+                                                                      </complexType>
+                                                                    </element>
+                                                                    <element name="CodigoAccionMonto" type="b:codigov2"/>
+                                                                  </sequence>
+                                                                </complexType>
+                                                              </element>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                </sequence>
+                                              </complexType>
+                                            </element>
+                                          </sequence>
+                                        </complexType>
+                                      </element>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="Prestamos" minOccurs="0" maxOccurs="unbounded">
+                            <complexType>
+                              <sequence>
+                                <element name="SaldoCapitalAdeudado" type="b:montov2"/>
+                                <element name="DisponibleATomar" type="b:montov2"/>
+                                <element name="CuotaMaximaPosible" type="b:montov2" minOccurs="0"/>
+                                <element name="PlazoMedio1" type="int"/>
+                                <element name="PlazoMedio2" type="int"/>
+                                <element name="TieneAbsorciones" type="b:indicador"/>
+                                <element name="Productos" minOccurs="0">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="Producto" minOccurs="0" maxOccurs="unbounded">
+                                        <complexType>
+                                          <sequence>
+                                            <element name="IdOferta" type="b:id"/>
+                                            <element name="NombreProductoSiebel" type="string"/>
+                                            <element name="IdProductoSiebel" type="b:id"/>
+                                            <element name="ProductoComercialSiebel" type="b:id"/>
+                                            <element name="MonedaProducto" type="b:codigov2"/>
+                                            <element name="OrdenProducto" type="int"/>
+                                            <element name="DatosComplementarios">
+                                              <complexType>
+                                                <sequence>
+                                                  <element name="MontoMaximo" type="b:montov2"/>
+                                                  <element name="MontoMinimo" type="b:montov2"/>
+                                                  <element name="PlazoMinimo" type="int"/>
+                                                  <element name="PlazoMaximo" type="int"/>
+                                                  <element name="TipoTasa" type="string"/>
+                                                  <element name="TasaReferencia" type="b:codigov2" minOccurs="0"/>
+                                                  <element name="Spread" type="decimal" minOccurs="0"/>
+                                                  <element name="Tasa" type="decimal" minOccurs="0"/>
+                                                  <element name="EsquemaTasa" type="b:codigov2"/>
+                                                  <element name="TieneTasaPromocional" type="b:indicador"/>
+                                                  <element name="TieneUnaCuotaMenos" type="b:indicador"/>
+                                                  <element name="IntervaloUnaCuotaMenos" type="int" minOccurs="0"/>
+                                                  <element name="Comision" type="b:montov2" minOccurs="0"/>
+                                                  <element name="ComisionPorcentual" type="b:porcentaje" minOccurs="0"/>
+                                                  <element name="Amortizaciones">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="Amortizacion" maxOccurs="unbounded">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="TipoAmortizacion" type="b:codigov2"/>
+                                                              <element name="Descripcion" type="string"/>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                  <element name="CuentasDebito" minOccurs="0">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="CuentaDebito" minOccurs="0" maxOccurs="unbounded">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="TipoCuentaDebito" type="b:codigov2"/>
+                                                              <element name="NumeroCuentaDebito" type="b:numeroCuentav2"/>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                  <element name="CuentasCredito" minOccurs="0">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="CuentaCredito" minOccurs="0" maxOccurs="unbounded">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="TipoCuentaCredito" type="b:codigov2"/>
+                                                              <element name="NumeroCuentaCredito" type="b:numeroCuentav2"/>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                  <element name="FechasVencimientoCuotas">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="FechaMinima1erVto" type="date"/>
+                                                        <element name="FechaSugerida1erVto" type="date"/>
+                                                        <element name="FechaMaxima1erVto" type="date"/>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                </sequence>
+                                              </complexType>
+                                            </element>
+                                          </sequence>
+                                        </complexType>
+                                      </element>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                                <element name="ProductosAbsorbentes" minOccurs="0">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="ProductoAbsorbente" minOccurs="0" maxOccurs="unbounded">
+                                        <complexType>
+                                          <sequence>
+                                            <element name="NombreProductoSiebel" type="string"/>
+                                            <element name="IdProductoSiebel" type="b:id"/>
+                                            <element name="ProductoComercialSiebel" type="b:id"/>
+                                            <element name="OrdenProducto" type="int"/>
+                                            <element name="DatosComplementarios">
+                                              <complexType>
+                                                <sequence>
+                                                  <element name="MontoMaximo" type="b:montov2"/>
+                                                  <element name="MontoMinimo" type="b:montov2"/>
+                                                  <element name="PlazoMinimo" type="int"/>
+                                                  <element name="PlazoMaximo" type="int"/>
+                                                  <element name="Tasa" type="decimal" minOccurs="0"/>
+                                                  <element name="EsquemaTasa" type="b:codigov2"/>
+                                                  <element name="TieneTasaPromocional" type="b:indicador"/>
+                                                  <element name="TieneUnaCuotaMenos" type="b:indicador"/>
+                                                  <element name="IntervaloUnaCuotaMenos" type="int" minOccurs="0"/>
+                                                  <element name="Comision" type="b:montov2" minOccurs="0"/>
+                                                  <element name="ComisionPorcentual" type="b:porcentaje" minOccurs="0"/>
+                                                  <element name="Amortizaciones">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="Amortizacion" maxOccurs="unbounded">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="TipoAmortizacion" type="b:codigov2"/>
+                                                              <element name="Descripcion" type="string"/>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                  <element name="CuentasDebito" minOccurs="0">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="CuentaDebito" minOccurs="0" maxOccurs="unbounded">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="TipoCuentaDebito" type="b:codigov2"/>
+                                                              <element name="NumeroCuentaDebito" type="b:numeroCuentav2"/>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                  <element name="CuentasCredito" minOccurs="0">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="CuentaCredito" minOccurs="0" maxOccurs="unbounded">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="TipoCuentaCredito" type="b:codigov2"/>
+                                                              <element name="NumeroCuentaCredito" type="b:numeroCuentav2"/>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                </sequence>
+                                              </complexType>
+                                            </element>
+                                            <element name="DatosAbsorcion">
+                                              <complexType>
+                                                <sequence>
+                                                  <element name="NumeroPrestamo" type="b:id"/>
+                                                  <element name="CapitalOrigen" type="b:montov2"/>
+                                                  <element name="SaldoCapitalAjustado" type="b:montov2"/>
+                                                  <element name="CantidadTotalCuotas" type="int"/>
+                                                  <element name="NumeroProximaCuotaAVencer" type="int"/>
+                                                  <element name="TasaPrestamo" type="decimal"/>
+                                                </sequence>
+                                              </complexType>
+                                            </element>
+                                          </sequence>
+                                        </complexType>
+                                      </element>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                        </sequence>
+                      </complexType>
+                    </element>
+                    <element name="OfertaSuperadora" minOccurs="0">
+                      <complexType>
+                        <sequence>
+                          <element name="TarjetasSueltas" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="CantidadTarjetasSueltasAOfrecer" type="int"/>
+                                <element name="TarjetaSuelta" maxOccurs="unbounded">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="TarjetaObligatoria" type="b:indicador"/>
+                                      <element name="ClaseProductoNV">
+                                        <complexType>
+                                          <sequence>
+                                            <element name="CodigoSubsistema" type="unsignedLong"/>
+                                            <element name="CodigoProducto" type="string"/>
+                                            <element name="CodigoSubProducto" type="string"/>
+                                          </sequence>
+                                        </complexType>
+                                      </element>
+                                      <element name="OfertasTarjetasSueltas">
+                                        <complexType>
+                                          <sequence>
+                                            <element name="CantidadAOfrecer" type="int"/>
+                                            <element name="OfertaTarjetasSuelta" maxOccurs="unbounded">
+                                              <complexType>
+                                                <sequence>
+                                                  <element name="Orden" type="int"/>
+                                                  <element name="TieneCosto" type="b:indicador"/>
+                                                  <element name="CodigoModificador" type="b:codigov2"/>
+                                                  <element ref="b:ClaseProductoCatalogo"/>
+                                                  <element name="AccionProductoCatalogo">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="CodigoAccionProducto" type="b:codigov2"/>
+                                                        <element name="ProductosTenencia" minOccurs="0" maxOccurs="unbounded">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="NumeroProductoTenencia" type="string"/>
+                                                              <element name="Obligatoriedad" type="b:indicador"/>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                  <element name="MontosLimite">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="Definitivo" type="b:montov2"/>
+                                                        <element name="PrimeraCompra" type="b:montov2" minOccurs="0"/>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                  <element name="CodigoAccionMonto" type="b:codigov2"/>
+                                                </sequence>
+                                              </complexType>
+                                            </element>
+                                          </sequence>
+                                        </complexType>
+                                      </element>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="TarjPaquetizadas" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="PaqueteExistente" type="b:indicador"/>
+                                <element name="Paquetes">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="Paquete" maxOccurs="unbounded">
+                                        <complexType>
+                                          <sequence>
+                                            <element name="OrdenPaquete" type="int"/>
+                                            <element ref="b:ClaseProductoNV"/>
+                                            <element ref="b:ClaseProductoCatalogo"/>
+                                            <element name="AccionProductoCatalogo">
+                                              <complexType>
+                                                <sequence>
+                                                  <element name="CodigoAccionProducto" type="b:codigov2"/>
+                                                  <element name="ProductosTenencia" minOccurs="0" maxOccurs="unbounded">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="NumeroProductoTenencia" type="string"/>
+                                                        <element name="Obligatoriedad" type="b:indicador"/>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                </sequence>
+                                              </complexType>
+                                            </element>
+                                            <element name="TarjPaquetizadasAOfrecer">
+                                              <complexType>
+                                                <sequence>
+                                                  <element name="Cantidad" type="int"/>
+                                                  <element name="TarjetaPaquetizada" maxOccurs="unbounded">
+                                                    <complexType>
+                                                      <sequence>
+                                                        <element name="TarjetaObligatoria" type="b:indicador"/>
+                                                        <element name="ClaseProductoNV">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="CodigoSubsistema" type="unsignedLong"/>
+                                                              <element name="CodigoProducto" type="string"/>
+                                                              <element name="CodigoSubProducto" type="string"/>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                        <element name="OfertasTarjPaquetizadas">
+                                                          <complexType>
+                                                            <sequence>
+                                                              <element name="CantidadAOfrecer" type="int"/>
+                                                              <element name="OfertaTarjetaPaquetizada" maxOccurs="unbounded">
+                                                                <complexType>
+                                                                  <sequence>
+                                                                    <element name="OrdenTarjeta" type="int"/>
+                                                                    <element name="CodigoModificador" type="b:codigov2"/>
+                                                                    <element ref="b:ClaseProductoCatalogo"/>
+                                                                    <element name="AccionComponenteCatalogo">
+                                                                      <complexType>
+                                                                        <sequence>
+                                                                          <element name="CodigoAccionComponente" type="b:codigov2"/>
+                                                                          <element name="ProductosTenencia" minOccurs="0" maxOccurs="unbounded">
+                                                                            <complexType>
+                                                                              <sequence>
+                                                                                <element name="NumeroProductoTenencia" type="string"/>
+                                                                                <element name="Obligatoriedad" type="b:indicador"/>
+                                                                              </sequence>
+                                                                            </complexType>
+                                                                          </element>
+                                                                        </sequence>
+                                                                      </complexType>
+                                                                    </element>
+                                                                    <element name="MontosLimite">
+                                                                      <complexType>
+                                                                        <sequence>
+                                                                          <element name="Definitivo" type="b:montov2"/>
+                                                                          <element name="PrimeraCompra" type="b:montov2" minOccurs="0"/>
+                                                                        </sequence>
+                                                                      </complexType>
+                                                                    </element>
+                                                                    <element name="CodigoAccionMonto" type="b:codigov2"/>
+                                                                  </sequence>
+                                                                </complexType>
+                                                              </element>
+                                                            </sequence>
+                                                          </complexType>
+                                                        </element>
+                                                      </sequence>
+                                                    </complexType>
+                                                  </element>
+                                                </sequence>
+                                              </complexType>
+                                            </element>
+                                          </sequence>
+                                        </complexType>
+                                      </element>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                        </sequence>
+                      </complexType>
+                    </element>
+                  </sequence>
+                </complexType>
+              </element>
+            </sequence>
+          </complexType>
+        </element>
+        <element ref="h:BGBAResultadoOperacionLog"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="ObtenerEvaluacionIndividuosOfertaResult">
+    <complexType>
+      <sequence>
+        <element ref="tns:ObtenerEvaluacionIndividuosOfertaResponse"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>
