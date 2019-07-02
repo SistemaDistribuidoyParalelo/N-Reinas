@@ -13,33 +13,22 @@ int check(int fila, int reinas[], int n)
     return 1;
 }
 
-int insertReina(int fila, int reinas[], int n, int inicio, int fin,int cantSoluciones)
+int insertReina(int fila, int reinas[], int n, int inicio, int fin, int cantSoluciones)
 {
-    int sumador;
     if (fila < n){
-        if(fila==0){
-            for (reinas[fila] = inicio; reinas[fila] < fin ; reinas[fila]++)
+        for (reinas[fila] = inicio; reinas[fila] < fin ; reinas[fila]++)
             {
                 if (check(fila, reinas, n))
                 {
-                    sumador = insertReina(fila + 1, reinas, n,0,fin, cantSoluciones);
+                    cantSoluciones = insertReina(fila + 1, reinas, n,0,n, cantSoluciones);
                 }
             }
-        }else{
-              for (reinas[fila] = 0; reinas[fila] < n; reinas[fila]++)
-            {
-                if (check(fila, reinas, n))
-                {
-                    sumador = insertReina(fila + 1, reinas, n,0,fin, cantSoluciones);
-                }
-            }
-        }
     }else{
         cantSoluciones++;
     }
+
+    return cantSoluciones;
     
-     if(cantSoluciones) printf("%d",cantSoluciones);
-return cantSoluciones;
 }
 
 void main(int argc, char *argv[])
@@ -64,25 +53,25 @@ void main(int argc, char *argv[])
     MPI_Status status;
 
     buff_inicio_fin_resultadoTemp = (int *)malloc(sizeof(int) * TAMANIO_BUFFER);  
-    
+    reinas = (int *)malloc(sizeof(int) * N); 
     //Transformo el numero immpar en par para despues dividir
-    if((N%2)){
+    /*if((N%2)){
         total= N+1;
     }else{
         total = N;
-    }
+    }*/
 
     if(miID==0){
         for(int i=1; i<cantidadDeProcesos; i++){
-            if(i == (cantidadDeProcesos-1) && (N%2) ){
+            if(i == (cantidadDeProcesos-1)){ //si es el utlimo caso le sumo el resto por el tema de los impares
                  //NUmeros impares, ultimo indice con +1
-                buff_inicio_fin_resultadoTemp[0] = (total / cantidadDeProcesos) * i;
-                buff_inicio_fin_resultadoTemp[1] = ((total / cantidadDeProcesos) * (i+1)) - 1;
+                buff_inicio_fin_resultadoTemp[0] = (N / cantidadDeProcesos) * i;
+                buff_inicio_fin_resultadoTemp[1] = ((N / cantidadDeProcesos) * (i+1)) + (N % cantidadDeProcesos);
                 buff_inicio_fin_resultadoTemp[2] = 0;
             }else{
                //indice internos sin considerar el ultimos
-                buff_inicio_fin_resultadoTemp[0] = (total / cantidadDeProcesos) * i;
-                buff_inicio_fin_resultadoTemp[1] = (total / cantidadDeProcesos) * (i+1);
+                buff_inicio_fin_resultadoTemp[0] = (N / cantidadDeProcesos) * i;
+                buff_inicio_fin_resultadoTemp[1] = (N / cantidadDeProcesos) * (i+1);
                 buff_inicio_fin_resultadoTemp[2] = 0;
             }
             MPI_Send(buff_inicio_fin_resultadoTemp,3,MPI_INT,i,i,MPI_COMM_WORLD);
@@ -90,7 +79,7 @@ void main(int argc, char *argv[])
         
         //Le mando para que trabaje el central tambien
         buff_inicio_fin_resultadoTemp[0] = 0;
-        buff_inicio_fin_resultadoTemp[1] = (total / cantidadDeProcesos);
+        buff_inicio_fin_resultadoTemp[1] = (N / cantidadDeProcesos);
         buff_inicio_fin_resultadoTemp[2] = 0;
         /*
         printf(" hilo %d inicio = %d \n",miID,buff_inicio_fin_resultadoTemp[0]);
@@ -98,15 +87,21 @@ void main(int argc, char *argv[])
         printf(" hilo %d contador = %d \n",miID,buff_inicio_fin_resultadoTemp[2]);
         printf("\n");
         */
+        buff_inicio_fin_resultadoTemp[2] += insertReina(0,reinas,N,buff_inicio_fin_resultadoTemp[0],buff_inicio_fin_resultadoTemp[1],buff_inicio_fin_resultadoTemp[2]);
+        printf(" hilo %d contador = %d \n",miID,buff_inicio_fin_resultadoTemp[2]);
+        
     }else{
         //es un job
         MPI_Recv(buff_inicio_fin_resultadoTemp,3,MPI_INT,0,miID,MPI_COMM_WORLD,&status);
-        /*
+        /*   
         printf(" hilo %d inicio = %d \n",miID,buff_inicio_fin_resultadoTemp[0]);
         printf(" hilo %d fin = %d \n",miID,buff_inicio_fin_resultadoTemp[1]);
         printf(" hilo %d contador = %d \n",miID,buff_inicio_fin_resultadoTemp[2]);
         printf("\n");
         */
+       buff_inicio_fin_resultadoTemp[2]+=insertReina(0,reinas,N,buff_inicio_fin_resultadoTemp[0],buff_inicio_fin_resultadoTemp[1],buff_inicio_fin_resultadoTemp[2]);
+       printf(" hilo %d contador = %d \n",miID,buff_inicio_fin_resultadoTemp[2]);
+         
     }
     free(buff_inicio_fin_resultadoTemp);
     MPI_Finalize();
