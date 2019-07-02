@@ -90,10 +90,11 @@ void main(int argc, char *argv[])
         for (int j = 0; j < cantidadDeProcesos; j++)
         {
             finalSoluciones[j] = 0;
+            finalSoluciones_aux[j] = 0;
         }
     }
     //Distribucion de los elementos
-    MPI_Scatter(reinas, N, MPI_INT, reinas_aux, N, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Scatter(reinas, , MPI_INT, reinas_aux, N, MPI_INT, 0, MPI_COMM_WORLD);
     //MPI_Scatter(finalSoluciones,cantidadDeProcesos,MPI_INT,finalSoluciones_aux,cantidadDeProcesos,MPI_INT,0,MPI_COMM_WORLD);
     // Colocar reinas (Bactracking)
     finalSoluciones[miID] += insertReina(0, reinas_aux, N, (N / cantidadDeProcesos) * miID,((N / cantidadDeProcesos) * (miID + 1)), cantidadSoluciones);
